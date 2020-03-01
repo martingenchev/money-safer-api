@@ -1,6 +1,7 @@
 const router = require('express').Router({ mergeParams: true });
 const userController = require('../../controllers/userController')();
 const auth = require('../../middleware/auth');
+
 router.get('/test1', (req, res) => res.status(200).send({
     message: 'Testing api'}
     ));
@@ -69,5 +70,14 @@ router.post("/deleteUser", auth, async (req,res,next) =>{
         console.log(e);
         res.status(500).send("Internal server error");
     }
+});
+router.get('/countries', async (req, res,next)=>{
+   try {
+       const data = await userController.getCountries()
+       res.status(200).send(data);
+   }catch (e) {
+       console.log(e)
+       res.status(500).send("Internal server error");
+   }
 });
 module.exports = router;

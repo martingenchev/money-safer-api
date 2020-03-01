@@ -1,4 +1,5 @@
 const UserModel = require('../models').Users;
+const ContriesModel = require('../models').Countries
 const TokenModel = require('../models').access_tokens;
 let bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -117,6 +118,13 @@ class userController{
     });
         return userData;
 
+    }
+
+    async getCountries(){
+    const countries = await ContriesModel.findAll({
+        attributes:["country_name"]
+        });
+     return countries;
     }
 }
 
