@@ -1,4 +1,5 @@
 const TransactionModel = require('../models').Transactions;
+const TransactionCategoriesModel = require('../models').Transactions_categories;
 
 class TransactionController {
 
@@ -23,7 +24,8 @@ class TransactionController {
         try{
             const transcationData = await  TransactionModel.findAll({
                 where:{user_id: data},
-                attributes: ['transaction_type', 'amount', 'id', 'transactions_category_id']
+                attributes: ['transaction_type', 'amount', 'id', 'transactions_category_id', 'createdAt'],
+                include:[{model: TransactionCategoriesModel,right: true, attributes:['category_name']   }]
             });
 
             return  transcationData;
@@ -117,6 +119,15 @@ class TransactionController {
             return transcationData;
         }catch (e) {
             // TODO create logging system to monitor such errors.
+            console.log(e)
+        }
+    }
+
+    async getTransactionCategories(){
+        try{
+            const transactionCategories = await TransactionCategoriesModel.findAll();
+            return transactionCategories;
+        }catch (e) {
             console.log(e)
         }
     }

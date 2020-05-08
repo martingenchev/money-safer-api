@@ -88,4 +88,12 @@ router.get("/total-outcome", auth, async (req,res,next)=>{
         res.status(500).send("Internal Server error");
     }
 });
+router.get("/transaction-categories", async (req,res,next) => {
+   try{
+       const data = await transactionController.getTransactionCategories();
+       res.json(data);
+   }catch (e) {
+       res.status(500).send("Internal Server error");
+   }
+});
 module.exports = router;

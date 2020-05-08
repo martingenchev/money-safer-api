@@ -5,8 +5,10 @@ const TokenModel = require('../models').access_tokens;
 const auth = async(req, res, next) =>{
 
     try{
+
         const token = req.header('Authorization').replace('Bearer ','');
-        console.log(token);
+console.log('TOKEN', token);
+
         // TODO put the secret key in ENV file. DON"T expose it like that
         const decoded = jwt.verify(token, "wlkerjfpowu5lkwfiustlk3459uqeflkjsdtlku345oq");
 
@@ -20,6 +22,7 @@ const auth = async(req, res, next) =>{
                 attributes:["token"]
             }]
         });
+        console.log('USER', user);
 
         if(!user){
             throw new Error();

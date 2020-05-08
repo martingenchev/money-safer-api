@@ -29,7 +29,7 @@ router.post("/logout", auth, async (req, res)=>{
        // userData = {token:req.user.user_tokens[0].dataValues.token, id: req.user.id };
         const data = await userController.logOut(req.user.id);
         console.log(data);
-        res.status(200).send("Success");
+        res.status(200).json({status:true});
     }catch (e) {
         // TODO create logging system to monitor such errors.
         console.log(e);
