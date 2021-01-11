@@ -6,8 +6,6 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
 class userController{
-
-
     createUser(data){
         return new Promise((resolve, reject)=>{
             if(!data.username) reject({"500": "Username is required"});
@@ -52,7 +50,7 @@ class userController{
         if(!data.email) throw new Error("Not valid credentials");
 
         if(!data.password) throw new Error("Not valid credentials");
-        console.log(data.password)
+        console.log(data.password);
         const userData = await  UserModel.findOne({
             where:{email: data.email},
             attributes:['id','username','password', 'first_name', 'last_name', 'email', 'adress']
@@ -75,14 +73,13 @@ class userController{
     }
 
     async getUserData(data){
+        if(!data) throw new  Error("Missing id");
         const userData = await  UserModel.findOne({
             where:{id:data},
             attributes:['username', 'first_name', 'last_name', 'email', 'adress'],
             include:[{model: ContriesModel,right: true, attributes:['country_name','id']   }]
         });
-        const user = {...userData.dataValues};
-        console.log(user)
-        return user;
+        return {...userData.dataValues};
     }
 
     async logOut(data){
@@ -114,7 +111,7 @@ class userController{
                     last_name: data.last_name,
                     adress: data.adress,
                     country_id: data.country_id,
-                    password: data.newPassword
+                    password: hashedPassword
                 },
                 {
                     where: {id: data.id}
