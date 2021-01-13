@@ -10,14 +10,29 @@ module.exports = {
         updatedAt: '2018-02-01 13:43:47.440 +00:00'
       },
       {
-        category_name: 'Rent',
+        category_name: 'Housing',
         createdAt: '2018-02-01 13:43:47.440 +00:00',
         updatedAt: '2018-02-01 13:43:47.440 +00:00'
       },
       {
-        category_name: 'Savings',
+        category_name: 'Utilities',
         createdAt: '2018-02-01 13:43:47.440 +00:00',
         updatedAt: '2018-02-01 13:43:47.440 +00:00'
+      },
+      {
+        category_name: 'Transportation',
+        createdAt: '2019-02-01 13:43:47.440 +00:00',
+        updatedAt: '2019-02-01 13:43:47.440 +00:00'
+      },
+      {
+        category_name: 'Entertainment',
+        createdAt: '2019-02-01 13:43:47.440 +00:00',
+        updatedAt: '2019-02-01 13:43:47.440 +00:00'
+      },
+      {
+        category_name: 'Other',
+        createdAt: '2019-02-01 13:43:47.440 +00:00',
+        updatedAt: '2019-02-01 13:43:47.440 +00:00'
       }
     ], {});
   },
